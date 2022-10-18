@@ -1,0 +1,40 @@
+.material {
+  background-color: #bcbaba;
+  width: 300px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  border-radius: 25px;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+
+  &__img {
+    width: 150px;
+    height: 150px;
+  }
+
+  &__info {
+    &__name {
+      font-size: 30px;
+    }
+  }
+  &__details {
+    padding-left: 20px;
+    width: 100%;
+    &__properties {
+      font-size: 16px;
+    }
+  }
+}
+
+.material:hover {
+  cursor: pointer;
+  background-color: #878787;
+  color: white;
+  scale: 1.05;
+}

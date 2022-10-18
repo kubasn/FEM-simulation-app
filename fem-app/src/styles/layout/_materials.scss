@@ -1,0 +1,22 @@
+.materials {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 100px;
+  -webkit-transition: all 4.5s linear;
+  -moz-transition: all 4.5s linear;
+  -o-transition: all 4.5s linear;
+  -ms-transition: all 4.5s linear;
+  transition: all 4.5s linear;
+
+  &__icons {
+    font-size: 80px;
+    color: #bcbaba;
+  }
+
+  &__icons:hover {
+    cursor: pointer;
+    font-size: 80px;
+    color: #fa7336;
+  }
+}
