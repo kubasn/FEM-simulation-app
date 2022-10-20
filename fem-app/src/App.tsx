@@ -12,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Layout header={header} menu={menu} materials={materials} />
+      <Layout header={header} menu={menu} />
     </div>
   );
 };
