@@ -4,7 +4,7 @@
 
 const backendItems = [
   {
-    id: "1",
+    id: "steel",
     name: "STEEL",
     img: "./images/steel.png",
     // img: require("../../images/steel.png"),
@@ -16,7 +16,7 @@ const backendItems = [
     },
   },
   {
-    id: "1awd",
+    id: "gold",
     name: "GOLD",
     img: "./images/gold.png",
     // img: require("../../images/steel.png"),
@@ -28,9 +28,9 @@ const backendItems = [
     },
   },
   {
-    id: "1awd",
-    name: "GOLD",
-    img: "./images/gold.png",
+    id: "glass",
+    name: "GLASS",
+    img: "./images/glass.png",
     // img: require("../../images/steel.png"),
     properties: {
       heatTransferCoefficient: 233,
@@ -40,9 +40,9 @@ const backendItems = [
     },
   },
   {
-    id: "1awd",
-    name: "GOLD",
-    img: "./images/gold.png",
+    id: "unkown",
+    name: "Define material",
+    img: "./images/unknown.png",
     // img: require("../../images/steel.png"),
     properties: {
       heatTransferCoefficient: 233,
@@ -54,3 +54,14 @@ const backendItems = [
 ];
 
 export default backendItems;
+
+export const programParameters = {
+  initialTemperature: 30,
+  simulationTime: 30,
+  timeStep: 1,
+  ambientTemperature: 1200,
+  size: {
+    h: 0.1,
+    b: 0.1,
+  },
+};
