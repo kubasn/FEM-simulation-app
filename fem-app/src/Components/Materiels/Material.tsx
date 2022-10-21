@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface MaterialProps {
   id: string;
@@ -10,14 +10,29 @@ interface MaterialProps {
     density: number;
     thermalConductivity: number;
   };
+  chooseMaterial: (id: string) => void;
+  choosen: string;
 }
+// "#f29f05"
+const Material: React.FC<MaterialProps> = ({
+  id,
+  name,
+  img,
+  properties,
 
-const Material: React.FC<MaterialProps> = ({ id, name, img, properties }) => {
-  let image = img;
-  console.log(name);
+  chooseMaterial,
+  choosen,
+}) => {
+  const [style, setStyle] = useState("material");
+
+  useEffect(() => {
+    if (choosen === id) {
+      setStyle("materialClicked");
+    } else setStyle("material");
+  }, [choosen]);
 
   return (
-    <div className="material">
+    <div onClick={() => chooseMaterial(id)} className={style}>
       <img className="material__img" src={img}></img>
       <div className="material__info__name">
         <h3>{name}</h3>

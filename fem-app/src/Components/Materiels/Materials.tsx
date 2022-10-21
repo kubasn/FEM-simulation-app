@@ -10,7 +10,13 @@ import "swiper/css/pagination";
 import "swiper/css";
 
 const Materials: React.FC = () => {
-  const [choosen, setChoosen] = useState(false);
+  const [choosen, setChoosen] = useState<string>("");
+
+  const chooseMaterial = (id: string) => {
+    console.log(id);
+    setChoosen(id);
+  };
+
   return (
     <div className="materials">
       <Swiper
@@ -31,7 +37,11 @@ const Materials: React.FC = () => {
       >
         {backendItems.map((item) => (
           <SwiperSlide key={item.id}>
-            <Material {...item} />
+            <Material
+              choosen={choosen}
+              chooseMaterial={chooseMaterial}
+              {...item}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
