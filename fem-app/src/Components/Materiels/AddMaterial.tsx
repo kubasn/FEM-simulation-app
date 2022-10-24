@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { HiPencil } from "react-icons/hi";
 
 interface MaterialProps {
   id: string;
@@ -14,7 +15,7 @@ interface MaterialProps {
   choosen: string;
 }
 // "#f29f05"
-const Material: React.FC<MaterialProps> = ({
+const AddMaterial: React.FC<MaterialProps> = ({
   id,
   name,
   img,
@@ -24,12 +25,16 @@ const Material: React.FC<MaterialProps> = ({
   choosen,
 }) => {
   const [style, setStyle] = useState("material");
-
+  const [showButton, setShowButton] = useState(false);
   useEffect(() => {
     if (choosen === id) {
       setStyle("materialClicked");
     } else setStyle("material");
   }, [choosen]);
+
+  const clickHandle = () => {
+    setShowButton(true);
+  };
 
   return (
     <div onClick={() => chooseMaterial(id)} className={style}>
@@ -40,24 +45,38 @@ const Material: React.FC<MaterialProps> = ({
       <div className="material__details">
         <h4>Details:</h4>
         <p className="material__details properties">
-          <span>
+          <span className="properties__item">
             <p>
               Heat transfer coefficient: {properties.heatTransferCoefficient}
+              <HiPencil
+                onClick={() => clickHandle()}
+                className="properties__item__icon"
+              />
             </p>
           </span>
-          <span>
-            <p>Specific heat: {properties.heatTransferCoefficient}</p>
+          <span className="properties__item">
+            <p>
+              Specific heat: {properties.heatTransferCoefficient}
+              <HiPencil className="properties__item__icon" />
+            </p>
           </span>
-          <span>
-            <p>Density: {properties.density}</p>
+          <span className="properties__item">
+            <p>
+              Density: {properties.density}
+              <HiPencil className="properties__item__icon" />
+            </p>
           </span>
-          <span>
-            <p>Thermal conductivity: {properties.thermalConductivity}</p>
+          <span className="properties__item">
+            <p>
+              Thermal conductivity: {properties.thermalConductivity}
+              <HiPencil className="properties__item__icon" />
+            </p>
           </span>
         </p>
       </div>
+      {showButton && <button className={`${style}__button`}>CONFIRM</button>}
     </div>
   );
 };
 
-export default Material;
+export default AddMaterial;

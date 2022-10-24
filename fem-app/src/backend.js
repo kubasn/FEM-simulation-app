@@ -45,10 +45,10 @@ const backendItems = [
     img: "./images/unknown.png",
     // img: require("../../images/steel.png"),
     properties: {
-      heatTransferCoefficient: 233,
-      specificHeat: 543,
-      density: 11000,
-      thermalConductivity: 20,
+      heatTransferCoefficient: 0,
+      specificHeat: 0,
+      density: 0,
+      thermalConductivity: 0,
     },
   },
 ];

@@ -27,8 +27,25 @@
   &__details {
     padding-left: 20px;
     width: 100%;
-    &__properties {
-      font-size: 16px;
+  }
+}
+
+.properties {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  &__item {
+    position: relative;
+    &__icon {
+      font-size: 18px;
+      position: absolute;
+      left: -20px;
+      top: 2px;
+    }
+    &__icon:hover {
+      color: #363636;
     }
   }
 }
@@ -62,9 +79,15 @@
   &__details {
     padding-left: 20px;
     width: 100%;
-    &__properties {
-      font-size: 16px;
-    }
+  }
+
+  &__button {
+    margin-top: 10px;
+    padding: 10px 5px;
+    background-color: #bcbaba;
+    border: 0;
+    border-radius: 5px;
+    color: white;
   }
 }
 
