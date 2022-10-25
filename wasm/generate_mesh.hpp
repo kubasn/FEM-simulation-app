@@ -423,8 +423,7 @@ void licz_C(node Node[], element Element[], int e, int pc, double ro, double cp,
 void Hbc(node Node[], element Element[], int e, int pc, double alfa, double cp, int psc);
 void wektor_P(node Node[], element Element[], int e, int pc, int psc, int alfa, int Talfa);
 void oblicz_macierzeLocal(node ND[], element Elem[]);
-void solve();
-
+int solve();
 
 
 

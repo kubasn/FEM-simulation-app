@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { HiPencil } from "react-icons/hi";
+import Input from "./Input";
 
 interface MaterialProps {
   id: string;
@@ -25,16 +26,14 @@ const AddMaterial: React.FC<MaterialProps> = ({
   choosen,
 }) => {
   const [style, setStyle] = useState("material");
-  const [showButton, setShowButton] = useState(false);
+  const [materialProperties, setMaterialProperties] = useState(properties);
   useEffect(() => {
     if (choosen === id) {
       setStyle("materialClicked");
     } else setStyle("material");
   }, [choosen]);
 
-  const clickHandle = () => {
-    setShowButton(true);
-  };
+  const clickHandle = () => {};
 
   return (
     <div onClick={() => chooseMaterial(id)} className={style}>
@@ -47,34 +46,42 @@ const AddMaterial: React.FC<MaterialProps> = ({
         <p className="material__details properties">
           <span className="properties__item">
             <p>
-              Heat transfer coefficient: {properties.heatTransferCoefficient}
-              <HiPencil
-                onClick={() => clickHandle()}
-                className="properties__item__icon"
+              <Input
+                clickHandle={clickHandle}
+                label=" Heat transfer coefficient: "
+                property={materialProperties.heatTransferCoefficient}
               />
             </p>
           </span>
           <span className="properties__item">
             <p>
-              Specific heat: {properties.heatTransferCoefficient}
-              <HiPencil className="properties__item__icon" />
+              <Input
+                clickHandle={clickHandle}
+                label="Specific heat: "
+                property={materialProperties.specificHeat}
+              />
             </p>
           </span>
           <span className="properties__item">
             <p>
-              Density: {properties.density}
-              <HiPencil className="properties__item__icon" />
+              <Input
+                clickHandle={clickHandle}
+                label="Density: "
+                property={materialProperties.density}
+              />
             </p>
           </span>
           <span className="properties__item">
             <p>
-              Thermal conductivity: {properties.thermalConductivity}
-              <HiPencil className="properties__item__icon" />
+              <Input
+                clickHandle={clickHandle}
+                label="Thermal conductivity: "
+                property={materialProperties.thermalConductivity}
+              />
             </p>
           </span>
         </p>
       </div>
-      {showButton && <button className={`${style}__button`}>CONFIRM</button>}
     </div>
   );
 };

@@ -1,9 +1,9 @@
 #include "generate_mesh.hpp"
 
-int main()
+int fem(int number)
 {
 	cout << "ello";
 	solve();
 	system("pause");
-	return 0;
+	return 'ello';
 }

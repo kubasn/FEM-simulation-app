@@ -1,0 +1,24 @@
+.input {
+  position: relative;
+  display: inline-block;
+  &__icon {
+    cursor: pointer;
+    font-size: 18px;
+    position: absolute;
+    left: -20px;
+    top: 2px;
+  }
+  &__icon:hover {
+    color: #363636;
+  }
+  &__element {
+    width: 3em;
+    border-radius: 3px;
+    border: 0;
+  }
+  &__element:focus {
+    border: 0;
+    background-color: #dedede;
+    outline: none;
+  }
+}

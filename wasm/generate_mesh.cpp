@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <emscripten/emscripten.h>
 #include <iostream>
 #include <math.h>
 #include<fstream>
@@ -776,7 +777,7 @@ void oblicz_macierzeLocal(node ND[], element Elem[])
 
 
 ////////////////////////////////////////
-void solve() {
+EMSCRIPTEN_KEEPALIVE int solve() {
 	GlobalElement global;
 	int nE, nN, psc;
 	nE = global.nE;
@@ -1001,4 +1002,6 @@ void solve() {
 	cout << endl;
 	delete[] ND;
 	delete[] Elem;
+
+	return 0;
 }

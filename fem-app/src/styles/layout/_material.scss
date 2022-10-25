@@ -35,19 +35,6 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-
-  &__item {
-    position: relative;
-    &__icon {
-      font-size: 18px;
-      position: absolute;
-      left: -20px;
-      top: 2px;
-    }
-    &__icon:hover {
-      color: #363636;
-    }
-  }
 }
 
 .materialClicked {

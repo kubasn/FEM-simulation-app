@@ -46,7 +46,7 @@ const Material: React.FC<MaterialProps> = ({
             </p>
           </span>
           <span>
-            <p>Specific heat: {properties.heatTransferCoefficient}</p>
+            <p>Specific heat: {properties.specificHeat}</p>
           </span>
           <span>
             <p>Density: {properties.density}</p>

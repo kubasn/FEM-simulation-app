@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 .menu {
   text-align: center;
   font-size: 24px;
@@ -6,11 +8,13 @@
 
   &__button {
     background-color: #f29f05;
+    font-family: "Bebas Neue", cursive;
+
     border: none;
     color: white;
-    padding: 15px 25px;
+    padding: 5px 20px;
     letter-spacing: 2px;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
 
     border-radius: 2px;
@@ -24,6 +28,5 @@
     cursor: pointer;
     background-color: #f28705;
     border-radius: 9px;
-    filter: url(#threshold) blur(0.3px);
   }
 }
