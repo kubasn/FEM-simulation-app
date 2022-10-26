@@ -5,20 +5,17 @@ import Header from "./Components/Header";
 import Layout from "./Components/Layout";
 import Materials from "./Components/Materiels/Materials";
 import Menu from "./Components/Menu";
-import createModule from "./fem.mjs";
+import createModule from "./fem.js";
 
 const App: React.FC = () => {
-  const [Module, setModule] = useState(false);
+  // const [Module, setModule] = useState();
   const header = <Header />;
   const menu = <Menu />;
-  const materials = <Materials />;
   useEffect(() => {
-    createModule().then((Module: any) => {
-      setModule(Module);
-
-      console.log(Module);
-      // console.log(Module);
-    });
+    console.log(createModule());
+    // createModule().then((module: any) => {
+    //   console.log(module._solve());
+    // });
   }, []);
 
   return (
