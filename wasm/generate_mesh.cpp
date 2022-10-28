@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <emscripten/emscripten.h>
+#include <emscripten/bind.h>
 #include <iostream>
+#include <vector>
 #include <math.h>
 #include<fstream>
 #include <cmath>
 #include "generate_mesh.hpp"
+using namespace emscripten;
 
-using namespace std;
 double pc = 1 / (sqrt(3));
 //double N[4]={1/(4*(1-pc)*(1-pc)),1/(4*(1+pc)*(1-pc)),1/(4*(1+pc)*(1+pc)),1/(4*(1-pc)*(1+pc))};
 double wynik[4][4];
@@ -82,15 +84,7 @@ struct SOE {
 				}
 			}
 		}
-		/*
-		cout << "globalne H" << endl;
-		for (int i = 0; i < nN; i++) {
-			for (int j = 0; j < nN; j++) {
-			cout << H_global[i][j] << " ";
-		}
-		cout << endl;
-		}
-		*/
+
 		
 		//double** C_global;
 		C_global = new double* [nN];
@@ -114,16 +108,7 @@ struct SOE {
 				}
 			}
 		}
-		/*
-		cout << endl;
-		for (int i = 0; i < nN; i++) {
-			for (int j = 0; j < nN; j++) {
-				cout << C_global[i][j] << " ";
-			}
-			cout << endl;
-		}
-		cout << endl;
-		*/
+	
 
 		//hbc global
 		//i= elem      
@@ -134,15 +119,7 @@ struct SOE {
 				}
 			}
 		}
-		/*
-		for (int i = 0; i < nN; i++) {
-			for (int j = 0; j < nN; j++) {
-				cout << HBC_global[i][j] << " ";
-			}
-			cout << endl;
-		}
-		cout << endl;
-		*/
+	
 		P_global = new double[nN];
 
 		for (int i = 0; i < nN; i++) {
@@ -213,11 +190,6 @@ struct SOE {
 		for (int i = 0; i < nN; i++)
 		{
 			T_global[i] *= -1;
-		}
-		cout << "Macierz Gt" << endl;
-		for (int i = 0; i < nN; i++)
-		{
-			cout << "Gt " << i + 1 << " = " << T_global[i] << endl;
 		}
 
 	}
@@ -777,7 +749,7 @@ void oblicz_macierzeLocal(node ND[], element Elem[])
 
 
 ////////////////////////////////////////
-EMSCRIPTEN_KEEPALIVE int solve() {
+std::vector<int> solve() {
 	GlobalElement global;
 	int nE, nN, psc;
 	nE = global.nE;
@@ -825,13 +797,7 @@ EMSCRIPTEN_KEEPALIVE int solve() {
 		nr_wezel++;
 	}
 
-	for (int i = 0; i < nE; i++) {
-		cout << "Element: " << (i + 1) << " ma wezly :" << endl;
-		for (int j = 0; j < 4; j++) {
-			cout << "Wezel " << Elem[i].ID[j]  << " : ";
-			cout << "x= " << ND[Elem[i].ID[j]].x << " y: " << ND[Elem[i].ID[j]].y << endl;
-		}
-	}
+
 	//BC
 	double skrElemX = ND[Elem[0].ID[0]].x;
 	for (int i = 0; i < nE; i++) {
@@ -851,7 +817,6 @@ EMSCRIPTEN_KEEPALIVE int solve() {
 			}
 		}
 	}
-	cout << "skrajne elementy:" << skrElemX << " " << skrElemY << endl;
 	for (int i = 0; i < nE; i++) {
 		for (int j = 0; j < 4; j++) {
 			//cout << "Wezel " << Elem[i].ID[j] + 1 << " : ";
@@ -861,16 +826,10 @@ EMSCRIPTEN_KEEPALIVE int solve() {
 
 		}
 	}
-	cout << nE;
-	cout << "bc";
-	for (int i = 0; i < nE; i++) {
-		for (int j = 0; j < 4; j++) {
-			cout << ND[Elem[i].ID[j]].BC;
-		}
-		cout << endl;
-	}
 
-	cout << nN;
+
+
+
 
 	//oblicz_macierzeLocal(ND, Elem); -tu jestt ok
 	//oblicz_macierzeLocal(ND, Elem);
@@ -889,26 +848,24 @@ EMSCRIPTEN_KEEPALIVE int solve() {
 		//soe.P_zastepcze[i] = 0;
 	}
 
-	cout << "test";
 
 
 	double deltatau = delta_t;
 	int nt = t_calkowity / delta_t;
-	double* min_temp;
-	double* max_temp;
+	std::vector<double>min_temp;
+	std::vector<double>max_temp;
+	std::vector<int>temp;
 
-	min_temp = new double[nt];
+	// min_temp = new double[nt];
 
 	for (int i = 0; i < nt; i++) {
 
-		min_temp[i] = 0;
+		min_temp.push_back(0);
 
 	}
-	max_temp = new double[nt];
+	// max_temp = new double[nt];
 	for (int i = 0; i < nt; i++) {
-
-		max_temp[i] = 0;
-
+		max_temp.push_back(0);
 	}
 	
 	
@@ -931,8 +888,7 @@ EMSCRIPTEN_KEEPALIVE int solve() {
 		oblicz_macierzeLocal(ND, Elem);
 		soe.licz_macierzeGlobal();
 		soe.inicjalizuj();
-		cout << nN;
-		cout << "iteracja nr." << w;
+
 		for (int i = 0; i < nN; i++)
 		{
 			for (int j = 0; j < nN; j++)
@@ -945,17 +901,16 @@ EMSCRIPTEN_KEEPALIVE int solve() {
 		
 			soe.P_zastepcze[i] += soe.P_global[i];
 		}
-		//for (int i = 0; i < nN; i++) {
-		//	cout << soe.P_zastepcze[i] << " " << endl;
-	//	}
+		
 	
 		soe.Gauss();
-		cout << "temp";
+		// cout << "temp";
 		
 		min_temp[w] = soe.T_global[0];
 		max_temp[w] = soe.T_global[0];
 		for (int i = 0; i < nN; i++) {
-			ND[i].tq = soe.T_global[i];
+			ND[i].tq = int (soe.T_global[i]);
+			temp.push_back(soe.T_global[i]);
 			if (min_temp[w] > soe.T_global[i])
 				min_temp[w] = soe.T_global[i];
 			if (max_temp[w] < soe.T_global[i])
@@ -994,14 +949,34 @@ EMSCRIPTEN_KEEPALIVE int solve() {
 	//	delete[] soe.Elem;
 	}
 	
-	cout << endl;
-	for (int i = 0; i < nt; i++) {
-		cout << min_temp[i] << " : " << max_temp[i] << endl;
-	}
+	// cout << endl;
+	// for (int i = 0; i < nt; i++) {
+	// 	cout << min_temp[i] << " : " << max_temp[i] << endl;
+	// }
 
-	cout << endl;
+	// cout << endl;
 	delete[] ND;
 	delete[] Elem;
+	// return min_temp;
 
-	return 0;
+ 	// int n = sizeof(min_temp) / sizeof(min_temp[0]);
+	// vector<double> v(min_temp, min_temp + sizeof(min_temp)/sizeof(min_temp[0]));
+//   return std::vector<double> vec(begin(min_temp), end(min_temp))
+return temp;
+// return v;
+
+//  res;
 }
+
+
+// int main()
+// {
+// 	// solve();
+// 	system("pause");
+// }
+
+EMSCRIPTEN_BINDINGS(fem_module)
+ {
+	    register_vector<int>("temp");
+    function("solve", &solve,allow_raw_pointer<arg<0>>());
+};

@@ -3,7 +3,6 @@
 #include<fstream>
 #include <cmath>
 
-using namespace std;
 
 
 
@@ -20,26 +19,38 @@ struct GlobalElement {
 	double Ro, Cp, alfa, T_alfa;
 	double t_calkowity, delta_t;
 	GlobalElement() {
-		fstream plik;
-		plik.open("data.txt", ios::in);
-		if (plik.good()) {
+		// fstream plik;
+		// plik.open("data.txt", ios::in);
+		// if (plik.good()) {
 
-			plik >> W;
-			plik >> H;
-			plik >> nW;
-			plik >> nH;
-			plik >> psc;
-			plik >> Ro;
-			plik >> Cp;
-			plik >> alfa;
-			plik >> T_alfa;
-			plik >> t_calkowity;
-			plik >> delta_t;
+		// 	plik >> W;
+		// 	plik >> H;
+		// 	plik >> nW;
+		// 	plik >> nH;
+		// 	plik >> psc;
+		// 	plik >> Ro;
+		// 	plik >> Cp;
+		// 	plik >> alfa;
+		// 	plik >> T_alfa;
+		// 	plik >> t_calkowity;
+		// 	plik >> delta_t;
+		
+		W=0.100;
+		 H=0.100;
+		 nW=4;
+		 nH=4;
+		 psc=2;
+		 Ro=7800;
+		Cp=700;
+		 alfa=300;
+		 T_alfa=1200;
+		 t_calkowity=500;
+		 delta_t=50;
 			nN = nH * nW;
 			nE = (nH - 1) * (nW - 1);
 
-		}
-		else throw 1;
+		// }
+		// else throw 1;
 	}
 
 };
@@ -423,7 +434,15 @@ void licz_C(node Node[], element Element[], int e, int pc, double ro, double cp,
 void Hbc(node Node[], element Element[], int e, int pc, double alfa, double cp, int psc);
 void wektor_P(node Node[], element Element[], int e, int pc, int psc, int alfa, int Talfa);
 void oblicz_macierzeLocal(node ND[], element Elem[]);
-int solve();
+// extern "C" double* solve();
+std::vector<int> solve();
+// using namespace emscripten;
+
+// EMSCRIPTEN_BINDINGS(my_module) {
+//         emscripten::function("runCalculation", &solve);
+// }
+
+
 
 
 
