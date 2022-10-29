@@ -216,7 +216,7 @@ void jacobianMINUSjeden()
 
 //////2psc 
 
-void matrixH(node Node[], element Element[], int e, int pc, int psc) {
+void matrixH(node Node[], element Element[], int e, int pc, int psc,int cond) {
 	Element4 elem4;
 	elem4.daneHC(psc);
 	int rozmiar = psc * psc;
@@ -328,7 +328,7 @@ void matrixH(node Node[], element Element[], int e, int pc, int psc) {
 	{
 		for (int k = 0; k < 4; k++)
 		{
-			Element[e].H_local[j][k] += (macierzX[j][k] + macierzY[j][k]) * 25 * wyznacznik * elem4.waga1[pc] * elem4.waga2[pc];
+			Element[e].H_local[j][k] += (macierzX[j][k] + macierzY[j][k]) * cond * wyznacznik * elem4.waga1[pc] * elem4.waga2[pc];
 		}
 	}
 
@@ -705,27 +705,17 @@ void oblicz_macierzeLocal(node ND[], element Elem[])
 	{
 		//cout << "Element: " << e + 1 << endl;
 		for (int i = 0; i < psc * psc; i++) {
-			matrixH(ND, Elem, e, i, psc);
+			matrixH(ND, Elem, e, i, psc,25);
 
 		}
 		//cout << endl;
 	}
 	for (int e = 0; e < nE; e++)
 	{
-		//cout << "Element: " << e + 1 << endl;
 		for (int i = 0; i < psc; i++) {
 			Hbc(ND, Elem, e, i, alfa, cp, psc);
-			/*
-			for (int j = 0; j < 4; j++)
-				for (int k = 0; k < 4; k++)
-				{
-					Elem[e].HBC_local[j][k] += Hbc_local[j][k];
-					//Elem[e].HBC_local[j][k] += Hbc_local[j][k]*detJ_HBC*waga_HBC;
-				}
-				*/
 		}
-		//cout << endl;
-		//cout << "macierz Hl+";
+
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				Elem[e].HBC_local[i][j] = Elem[e].HBC_local[i][j]; //Elem[e].H_local[i][j] + ;
@@ -735,8 +725,6 @@ void oblicz_macierzeLocal(node ND[], element Elem[])
 
 	for (int e = 0; e < nE; e++)
 	{
-		//wektor_P(node Node[], element Element[], int e, int pc, int psc,int alfa,int Talfa)
-		//cout << "Element: " << e + 1 << endl;
 		for (int i = 0; i < psc; i++) {
 			wektor_P(ND, Elem, e, i, psc, alfa, T_alfa);
 			for (int j = 0; j < 4; j++)
@@ -749,15 +737,15 @@ void oblicz_macierzeLocal(node ND[], element Elem[])
 
 
 ////////////////////////////////////////
-std::vector<int> solve() {
+std::vector<int> solve(int alfa, int cp, int ro, int cond) {
 	GlobalElement global;
 	int nE, nN, psc;
 	nE = global.nE;
 	nN = global.nN;
 	psc = global.psc;
-	double ro = global.Ro;
-	double cp = global.Cp;
-	double alfa = global.alfa;
+	// double ro = global.Ro;
+	// double cp = global.Cp;
+	// double alfa = global.alfa;
 	double T_alfa = global.T_alfa;
 	double t_calkowity = global.t_calkowity;
 	double delta_t = global.delta_t;
@@ -827,12 +815,6 @@ std::vector<int> solve() {
 		}
 	}
 
-
-
-
-
-	//oblicz_macierzeLocal(ND, Elem); -tu jestt ok
-	//oblicz_macierzeLocal(ND, Elem);
 
 	SOE soe;
 	soe.nE = nE;
@@ -962,6 +944,9 @@ std::vector<int> solve() {
  	// int n = sizeof(min_temp) / sizeof(min_temp[0]);
 	// vector<double> v(min_temp, min_temp + sizeof(min_temp)/sizeof(min_temp[0]));
 //   return std::vector<double> vec(begin(min_temp), end(min_temp))
+temp.push_back(alfa);
+temp.push_back(cp);
+temp.push_back(cond);
 return temp;
 // return v;
 

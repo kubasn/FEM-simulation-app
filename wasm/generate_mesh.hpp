@@ -434,8 +434,8 @@ void licz_C(node Node[], element Element[], int e, int pc, double ro, double cp,
 void Hbc(node Node[], element Element[], int e, int pc, double alfa, double cp, int psc);
 void wektor_P(node Node[], element Element[], int e, int pc, int psc, int alfa, int Talfa);
 void oblicz_macierzeLocal(node ND[], element Elem[]);
-// extern "C" double* solve();
-std::vector<int> solve();
+// extern "C" double* solve(int w);
+std::vector<int> solve(int alfa, int cp, int ro, int cond);
 // using namespace emscripten;
 
 // EMSCRIPTEN_BINDINGS(my_module) {

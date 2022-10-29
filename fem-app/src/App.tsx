@@ -14,12 +14,18 @@ const App: React.FC = () => {
   const menu = <Menu />;
   useEffect(() => {
     createModule().then((module: any) => {
-      const b = module.solve();
+      let alfa = 300;
+      let cp = 700;
+      let ro = 7800;
+      let cond = 25;
+      // alfa - heat transfer coefficient // cp - specific heat // ro - density // cond - thermal conductivity
+      const b = module.solve(alfa, cp, ro, cond);
 
       let tab: any[] = [];
       let newTab: number[] = [];
       let j = 0;
       for (let i = 0; i < b.size(); i++) {
+        console.log(b.get(i));
         newTab.push(b.get(i));
 
         if ((i + 1) % 16 == 0) {
