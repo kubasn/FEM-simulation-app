@@ -1,17 +1,27 @@
 import { ActionType } from "../actionType";
 
-export interface GetTemperatures {}
+export interface GetTemperaturesAction {
+  type: ActionType.GET_TEMPERATURES;
+}
 
 export interface SetTemperaturesAction {
   type: ActionType.SET_TEMPERATURES;
 }
 
-export interface SetTemperaturesComplate {
+export interface SetTemperaturesComplateAction {
   type: ActionType.SET_TEMPERATURES_COMPLATE;
-  payload: Cell[];
+  payload: {
+    [iterationId: number]: number[];
+  };
 }
 
 export interface SetTemperaturesErrorAction {
   type: ActionType.SET_TEMPERATURES_ERROR;
   payload: string;
 }
+
+export type Action =
+  | GetTemperaturesAction
+  | SetTemperaturesAction
+  | SetTemperaturesComplateAction
+  | SetTemperaturesErrorAction;
