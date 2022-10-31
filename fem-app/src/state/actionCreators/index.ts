@@ -5,6 +5,7 @@ import createModule from "../../fem.mjs";
 
 export const setTemperatures = () => {
   return (dispatch: Dispatch<Action>) => {
+    dispatch({ type: ActionType.SET_TEMPERATURES });
     try {
       createModule().then((module: any) => {
         let alfa = 300;
@@ -18,7 +19,6 @@ export const setTemperatures = () => {
         let newTab: number[] = [];
         let j = 0;
         for (let i = 0; i < b.size(); i++) {
-          console.log(b.get(i));
           newTab.push(b.get(i));
 
           if ((i + 1) % 16 == 0) {

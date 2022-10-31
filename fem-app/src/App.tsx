@@ -5,16 +5,19 @@ import "./App.scss";
 import Header from "./Components/Header";
 import Layout from "./Components/Layout";
 import Menu from "./Components/Menu";
-import { setTemperatures } from "./state/actions";
+import { useActions } from "./hooks/use-actions";
+import { actionCreators } from "./state";
+
 // @ts-ignore
 
 const App: React.FC = () => {
   // const [Module, setModule] = useState();
   const header = <Header />;
   const menu = <Menu />;
+  // const dispatch = useDispatch();
+  const { setTemperatures } = useActions();
   useEffect(() => {
-    const dispatch = useDispatch();
-    dispatch(setTemperatures);
+    setTemperatures();
   }, []);
 
   return (
