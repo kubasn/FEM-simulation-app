@@ -4,15 +4,13 @@ import { ActionType } from "../actionType";
 interface temperaturesState {
   loading: boolean;
   error: string | null;
-  data: {
-    [iterationId: number]: number[];
-  };
+  data: number[][];
 }
 
 const initialState: temperaturesState = {
   loading: false,
   error: null,
-  data: {},
+  data: [],
 };
 
 const reducer = (state: temperaturesState = initialState, action: Action) => {
