@@ -6,7 +6,6 @@ const Menu: React.FC = () => {
     <div className="menu">
       <h2>Choose a material </h2>
       <Materials />
-      <button className="menu__button">START</button>
     </div>
   );
 };

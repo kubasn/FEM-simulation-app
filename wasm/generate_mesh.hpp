@@ -16,7 +16,8 @@ struct node {
 struct GlobalElement {
 	double W, H, nE, nN;
 	int nH, nW, psc;
-	double Ro, Cp, alfa, T_alfa;
+	// double Ro, Cp, alfa, T_alfa;
+	double T_alfa;
 	double t_calkowity, delta_t;
 	GlobalElement() {
 		// fstream plik;
@@ -40,9 +41,9 @@ struct GlobalElement {
 		 nW=4;
 		 nH=4;
 		 psc=2;
-		 Ro=7800;
-		Cp=700;
-		 alfa=300;
+		//  Ro=7800;
+		// Cp=700;
+		//  alfa=300;
 		 T_alfa=1200;
 		 t_calkowity=500;
 		 delta_t=50;
@@ -435,7 +436,7 @@ void Hbc(node Node[], element Element[], int e, int pc, double alfa, double cp, 
 void wektor_P(node Node[], element Element[], int e, int pc, int psc, int alfa, int Talfa);
 void oblicz_macierzeLocal(node ND[], element Elem[]);
 // extern "C" double* solve(int w);
-std::vector<int> solve(int alfa, int cp, int ro, int cond);
+std::vector<int> solve(double alfa, double cp, double ro, double cond);
 // using namespace emscripten;
 
 // EMSCRIPTEN_BINDINGS(my_module) {

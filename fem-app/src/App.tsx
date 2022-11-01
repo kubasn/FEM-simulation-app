@@ -11,14 +11,8 @@ import { actionCreators } from "./state";
 // @ts-ignore
 
 const App: React.FC = () => {
-  // const [Module, setModule] = useState();
   const header = <Header />;
   const menu = <Menu />;
-  // const dispatch = useDispatch();
-  const { setTemperatures } = useActions();
-  useEffect(() => {
-    setTemperatures();
-  }, []);
 
   return (
     <div className="App">

@@ -681,16 +681,16 @@ void wektor_P(node Node[], element Element[], int e, int pc, int psc, int alfa, 
 
 }
 
-void oblicz_macierzeLocal(node ND[], element Elem[])
+void oblicz_macierzeLocal(node ND[], element Elem[],double ro,double cp,double alfa)
 {
 	GlobalElement global;
 	int nE = global.nE;
 	int nN = global.nN;
 
-	double ro = global.Ro;
-	double cp = global.Cp;
+	// double ro = global.Ro;
+	// double cp = global.Cp;
 	int psc = global.psc;
-	double alfa = global.alfa;
+	// double alfa = global.alfa;
 	double T_alfa = global.T_alfa;
 	for (int e = 0; e < nE; e++)
 	{
@@ -737,7 +737,7 @@ void oblicz_macierzeLocal(node ND[], element Elem[])
 
 
 ////////////////////////////////////////
-std::vector<int> solve(int alfa, int cp, int ro, int cond) {
+std::vector<int> solve(double alfa, double cp, double ro, double cond) {
 	GlobalElement global;
 	int nE, nN, psc;
 	nE = global.nE;
@@ -867,7 +867,7 @@ std::vector<int> solve(int alfa, int cp, int ro, int cond) {
 			}
 		}
 		
-		oblicz_macierzeLocal(ND, Elem);
+		oblicz_macierzeLocal(ND, Elem,ro,cp,alfa);
 		soe.licz_macierzeGlobal();
 		soe.inicjalizuj();
 
@@ -947,6 +947,8 @@ std::vector<int> solve(int alfa, int cp, int ro, int cond) {
 temp.push_back(alfa);
 temp.push_back(cp);
 temp.push_back(cond);
+
+
 return temp;
 // return v;
 

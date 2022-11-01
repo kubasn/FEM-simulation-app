@@ -22,9 +22,9 @@ const backendItems = [
     // img: require("../../images/steel.png"),
     properties: {
       heatTransferCoefficient: 233,
-      specificHeat: 543,
-      density: 11000,
-      thermalConductivity: 20,
+      specificHeat: 600,
+      density: 19.3,
+      thermalConductivity: 314,
     },
   },
   {
@@ -33,10 +33,10 @@ const backendItems = [
     img: "./images/glass.png",
     // img: require("../../images/steel.png"),
     properties: {
-      heatTransferCoefficient: 233,
+      heatTransferCoefficient: 50,
       specificHeat: 543,
-      density: 11000,
-      thermalConductivity: 20,
+      density: 2500,
+      thermalConductivity: 2.5,
     },
   },
   {

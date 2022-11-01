@@ -10,7 +10,6 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({ clickHandle, property, label }) => {
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState(property);
-  console.log(property);
   const onClickHandle = () => {
     setShowInput(!showInput);
     clickHandle();
