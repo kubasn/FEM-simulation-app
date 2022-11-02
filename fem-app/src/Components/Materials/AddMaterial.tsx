@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { HiPencil } from "react-icons/hi";
+import { useActions } from "../../hooks/use-actions";
 import Input from "./Input";
 
 interface MaterialProps {
@@ -12,7 +12,15 @@ interface MaterialProps {
     density: number;
     thermalConductivity: number;
   };
-  chooseMaterial: (id: string) => void;
+  chooseMaterial: (
+    id: string,
+    properties: {
+      heatTransferCoefficient: number;
+      specificHeat: number;
+      density: number;
+      thermalConductivity: number;
+    }
+  ) => void;
   choosen: string;
 }
 // "#f29f05"
@@ -27,16 +35,28 @@ const AddMaterial: React.FC<MaterialProps> = ({
 }) => {
   const [style, setStyle] = useState("material");
   const [materialProperties, setMaterialProperties] = useState(properties);
+  const { setParams } = useActions();
+
   useEffect(() => {
     if (choosen === id) {
       setStyle("materialClicked");
     } else setStyle("material");
   }, [choosen]);
 
-  const clickHandle = () => {};
+  const changeHandler = (id: string, value: number) => {
+    setMaterialProperties({ ...materialProperties, [id]: value });
+    //
+  };
+
+  const clickHandle = () => {
+    setParams(materialProperties);
+  };
 
   return (
-    <div onClick={() => chooseMaterial(id)} className={style}>
+    <div
+      onClick={() => chooseMaterial("unknown", materialProperties)}
+      className={style}
+    >
       <img className="material__img" src={img}></img>
       <div className="material__info__name">
         <h3>{name}</h3>
@@ -47,8 +67,9 @@ const AddMaterial: React.FC<MaterialProps> = ({
           <span className="properties__item">
             <p>
               <Input
-                clickHandle={clickHandle}
+                changeHandler={changeHandler}
                 label=" Heat transfer coefficient: "
+                id="heatTransferCoefficient"
                 property={materialProperties.heatTransferCoefficient}
               />
             </p>
@@ -56,8 +77,9 @@ const AddMaterial: React.FC<MaterialProps> = ({
           <span className="properties__item">
             <p>
               <Input
-                clickHandle={clickHandle}
+                changeHandler={changeHandler}
                 label="Specific heat: "
+                id="specificHeat"
                 property={materialProperties.specificHeat}
               />
             </p>
@@ -65,8 +87,9 @@ const AddMaterial: React.FC<MaterialProps> = ({
           <span className="properties__item">
             <p>
               <Input
-                clickHandle={clickHandle}
+                changeHandler={changeHandler}
                 label="Density: "
+                id="density"
                 property={materialProperties.density}
               />
             </p>
@@ -74,13 +97,17 @@ const AddMaterial: React.FC<MaterialProps> = ({
           <span className="properties__item">
             <p>
               <Input
-                clickHandle={clickHandle}
+                changeHandler={changeHandler}
+                id="thermalConductivity"
                 label="Thermal conductivity: "
                 property={materialProperties.thermalConductivity}
               />
             </p>
           </span>
         </p>
+        <button className="material__button" onClick={clickHandle}>
+          SAVE
+        </button>
       </div>
     </div>
   );

@@ -10,7 +10,15 @@ interface MaterialProps {
     density: number;
     thermalConductivity: number;
   };
-  chooseMaterial: (id: string) => void;
+  chooseMaterial: (
+    id: string,
+    properties: {
+      heatTransferCoefficient: number;
+      specificHeat: number;
+      density: number;
+      thermalConductivity: number;
+    }
+  ) => void;
   choosen: string;
 }
 // "#f29f05"
@@ -32,7 +40,7 @@ const Material: React.FC<MaterialProps> = ({
   }, [choosen]);
 
   return (
-    <div onClick={() => chooseMaterial(id)} className={style}>
+    <div onClick={() => chooseMaterial(id, properties)} className={style}>
       <img className="material__img" src={img}></img>
       <div className="material__info__name">
         <h3>{name}</h3>

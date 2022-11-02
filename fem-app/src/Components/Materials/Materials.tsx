@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css";
 import AddMaterial from "./AddMaterial";
+import { useActions } from "../../hooks/use-actions";
 
 interface MaterialsProps {
   choosen: string;
@@ -16,8 +17,24 @@ interface MaterialsProps {
 }
 
 const Materials: React.FC<MaterialsProps> = ({ setChoosen, choosen }) => {
-  const chooseMaterial = (id: string) => {
-    console.log(id);
+  const { setParams } = useActions();
+  const chooseMaterial = (
+    id: string,
+    properties: {
+      heatTransferCoefficient: number;
+      specificHeat: number;
+      density: number;
+      thermalConductivity: number;
+    }
+  ) => {
+    let item: any;
+    console.log(properties);
+    // if (id !== "unknown") {
+    //   item = backendItems.find((item) => item.id === id);
+    //   setParams({ ...item!.properties });
+    // } else {
+    setParams({ ...properties });
+    // }
     setChoosen(id);
   };
 
@@ -42,7 +59,7 @@ const Materials: React.FC<MaterialsProps> = ({ setChoosen, choosen }) => {
         >
           {backendItems.map((item) => (
             <SwiperSlide key={item.id}>
-              {item.id !== "unkown" ? (
+              {item.id !== "unknown" ? (
                 <Material
                   choosen={choosen}
                   chooseMaterial={chooseMaterial}

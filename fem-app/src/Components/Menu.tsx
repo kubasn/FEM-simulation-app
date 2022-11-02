@@ -11,6 +11,7 @@ const Menu: React.FC = () => {
 
   const clickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    console.log(choosen);
     setShowResults(true);
   };
 

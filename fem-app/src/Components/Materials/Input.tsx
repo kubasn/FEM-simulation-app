@@ -2,21 +2,29 @@ import React, { useState } from "react";
 import { HiPencil } from "react-icons/hi";
 
 interface InputProps {
-  clickHandle: () => void;
-  property: Number;
+  // clickHandle: () => void;
+  changeHandler: (id: string, value: number) => void;
+  property: number;
   label: String;
+  id: string;
 }
 
-const Input: React.FC<InputProps> = ({ clickHandle, property, label }) => {
+const Input: React.FC<InputProps> = ({
+  changeHandler,
+  property,
+  label,
+  id,
+}) => {
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState(property);
   const onClickHandle = () => {
     setShowInput(!showInput);
-    clickHandle();
+    // clickHandle();
   };
   const onChange = (e: string) => {
     const val = parseFloat(e);
     if (!isNaN(val)) setValue(val);
+    changeHandler(id, val);
   };
 
   return (

@@ -1,7 +1,13 @@
 import { ActionType } from "../actionType";
 
-export interface GetTemperaturesAction {
-  type: ActionType.GET_TEMPERATURES;
+export interface SetParamsAction {
+  type: ActionType.SET_PARAMS;
+  payload: {
+    heatTransferCoefficient: number;
+    specificHeat: number;
+    density: number;
+    thermalConductivity: number;
+  };
 }
 
 export interface SetTemperaturesAction {
@@ -22,7 +28,7 @@ export interface SetTemperaturesErrorAction {
 }
 
 export type Action =
-  | GetTemperaturesAction
+  | SetParamsAction
   | SetTemperaturesAction
   | SetTemperaturesComplateAction
   | SetTemperaturesErrorAction;

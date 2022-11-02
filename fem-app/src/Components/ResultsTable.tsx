@@ -6,8 +6,6 @@ interface ResultsTable {
 }
 
 const ResultsTable: React.FC<ResultsTable> = ({ data }) => {
-  console.log(minMax(data));
-
   const result = minMax(data);
   let time = 0;
   return (
@@ -23,7 +21,7 @@ const ResultsTable: React.FC<ResultsTable> = ({ data }) => {
         {result.minTab.map((item, key) => {
           time += programParameters.simulationTimeStep;
           return (
-            <tr>
+            <tr key={key}>
               <td>{time}s</td>
               <td>{result.minTab[key]}</td>
               <td>{result.maxTab[key]}</td>

@@ -16,10 +16,6 @@ const initialState: temperaturesState = {
 const reducer = produce(
   (state: temperaturesState = initialState, action: Action) => {
     switch (action.type) {
-      case ActionType.GET_TEMPERATURES:
-        state.error = null;
-        return state;
-
       //ok
       case ActionType.SET_TEMPERATURES:
         state.loading = true;
