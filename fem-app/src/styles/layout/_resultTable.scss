@@ -1,0 +1,30 @@
+$tableBg: #efefef;
+.resultTable {
+  width: 100%;
+}
+
+.table {
+  margin: auto;
+  border-spacing: 0;
+  padding: 2px 10px;
+  border-radius: 10px;
+
+  table {
+    border-spacing: 0;
+  }
+
+  background-color: $tableBg;
+  color: rgb(47, 47, 47);
+
+  td {
+    border-right: 2px solid rgb(47, 47, 47);
+    padding: 0 20px;
+  }
+  td:last-child {
+    border: 0;
+  }
+
+  td + td {
+    border-left: 0;
+  }
+}

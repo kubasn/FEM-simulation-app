@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
-.menu {
+.main {
   text-align: center;
   font-size: 24px;
   color: #fff;
   margin-top: 2%;
+  &__menu {
+  }
 
   &__button {
     background-color: #f29f05;
     font-family: "Bebas Neue", cursive;
-
+    margin: auto;
     border: none;
     color: white;
     padding: 5px 20px;

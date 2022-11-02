@@ -57,7 +57,8 @@ export default backendItems;
 
 export const programParameters = {
   initialTemperature: 30,
-  simulationTime: 30,
+  simulationTime: 500,
+  simulationTimeStep: 50,
   timeStep: 1,
   ambientTemperature: 1200,
   size: {
