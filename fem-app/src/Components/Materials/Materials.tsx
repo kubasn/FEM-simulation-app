@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import backendItems from "../../backend";
 import Material from "./Material";
 
@@ -10,23 +10,15 @@ import "swiper/css/pagination";
 import "swiper/css";
 import AddMaterial from "./AddMaterial";
 
-import { useActions } from "../../hooks/use-actions";
+interface MaterialsProps {
+  choosen: string;
+  setChoosen: (id: string) => void;
+}
 
-const Materials: React.FC = () => {
-  const [choosen, setChoosen] = useState<string>("");
-  const { setTemperatures } = useActions();
-
+const Materials: React.FC<MaterialsProps> = ({ setChoosen, choosen }) => {
   const chooseMaterial = (id: string) => {
     console.log(id);
     setChoosen(id);
-  };
-
-  const clickHandle = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log("ello");
-    const item = backendItems.filter((item) => choosen === item.id)[0];
-    //console.log(item);
-    setTemperatures(item);
   };
 
   return (
@@ -67,9 +59,6 @@ const Materials: React.FC = () => {
           ))}
         </Swiper>
       </div>
-      <button onClick={clickHandle} className="menu__button">
-        START
-      </button>
     </div>
   );
 };

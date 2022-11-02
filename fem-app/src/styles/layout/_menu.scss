@@ -29,4 +29,10 @@
     background-color: #f28705;
     border-radius: 9px;
   }
+
+  &__button:disabled {
+    cursor: default;
+    background-color: rgb(148, 147, 147);
+    border-radius: 9px;
+  }
 }

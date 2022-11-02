@@ -1,12 +1,9 @@
 /* eslint-disable */
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 import "./App.scss";
 import Header from "./Components/Header";
 import Layout from "./Components/Layout";
 import Menu from "./Components/Menu";
-import { useActions } from "./hooks/use-actions";
-import { actionCreators } from "./state";
 
 // @ts-ignore
 
