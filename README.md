@@ -1,7 +1,7 @@
 # Finite Element Method simulation
 
 ## Description
-A web applications that allows execute FEM application.
+A web applications that allows solve FEM equation.
 
 ## Tech stack
 - **TypeScript**
