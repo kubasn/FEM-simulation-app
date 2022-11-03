@@ -16,9 +16,12 @@ $tableBg: #efefef;
   background-color: $tableBg;
   color: rgb(47, 47, 47);
 
+  th {
+    padding: 0 20px;
+  }
+
   td {
     border-right: 2px solid rgb(47, 47, 47);
-    padding: 0 20px;
   }
   td:last-child {
     border: 0;

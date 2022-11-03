@@ -14,15 +14,15 @@ const ResultsTable: React.FC<ResultsTable> = ({ data }) => {
       <h3>Min/Max material temperature after time [s] </h3>
       <table className="table">
         <tr>
-          <th>After</th>
-          <th>Min</th>
-          <th>Max</th>
+          <th>After [s]</th>
+          <th>Min [&#8451;]</th>
+          <th>Max [&#8451;]</th>
         </tr>
         {result.minTab.map((item, key) => {
           time += programParameters.simulationTimeStep;
           return (
             <tr key={key}>
-              <td>{time}s</td>
+              <td>{time}</td>
               <td>{result.minTab[key]}</td>
               <td>{result.maxTab[key]}</td>
             </tr>
