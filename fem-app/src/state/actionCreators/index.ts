@@ -22,18 +22,13 @@ export const setTemperatures = (material: SetTemperaturesProps) => {
     dispatch({ type: ActionType.SET_TEMPERATURES });
     try {
       createModule().then(async (module: any) => {
-        // let alfa = 300;
-        // let cp = 700;
-        // let ro = 7800;
-        // let cond = 25;
-
-        let alfa = material.heatTransferCoefficient;
-        let cp = material.specificHeat;
-        let ro = material.density;
-        let cond = material.thermalConductivity;
-
         // alfa - heat transfer coefficient // cp - specific heat // ro - density // cond - thermal conductivity
-        const b = await module.solve(alfa, cp, ro, cond);
+        const b = await module.solve(
+          material.heatTransferCoefficient,
+          material.specificHeat,
+          material.density,
+          material.thermalConductivity
+        );
 
         let tab: any[] = [];
         let newTab: number[] = [];

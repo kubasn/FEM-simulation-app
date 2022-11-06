@@ -8,6 +8,7 @@ const minMax = (tables: number[][]) => {
     minTab.push(min);
     maxTab.push(max);
   });
+  //return min and max values from every table
   return { minTab, maxTab };
 };
 
@@ -24,6 +25,7 @@ export const minMaxGlobal = (tables: number[][]) => {
     maxTab.push(max);
   });
 
+  //return min and max values from all tables
   const min = Math.min(...minTab);
   const max = Math.max(...minTab);
 

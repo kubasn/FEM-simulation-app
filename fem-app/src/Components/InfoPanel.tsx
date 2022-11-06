@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AiOutlineInfoCircle } from "react-icons/ai";
 import { BsFillLightbulbFill } from "react-icons/bs";
 import { GiCancel } from "react-icons/gi";
 import { programParameters } from "../backend";

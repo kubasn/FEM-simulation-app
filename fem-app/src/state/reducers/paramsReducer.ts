@@ -22,7 +22,6 @@ const initialState: paramsState = {
 
 const reducer = produce((state: paramsState = initialState, action: Action) => {
   switch (action.type) {
-    //ok
     case ActionType.SET_PARAMS:
       state.data = action.payload;
       return state;

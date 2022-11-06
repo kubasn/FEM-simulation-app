@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import backendItems from "../backend";
 import { useActions } from "../hooks/use-actions";
 import { useTypedSelector } from "../hooks/use-typed-selector";
 import ResultsTable from "./ResultsTable";

@@ -1,7 +1,3 @@
-//specificHeat - ciepło właściwe
-//density - gestosc
-//thermal conductivity - współczynnik przewodzenia ciepła
-
 const backendItems = [
   {
     id: "steel",

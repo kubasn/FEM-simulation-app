@@ -16,9 +16,6 @@ export interface SetTemperaturesAction {
 
 export interface SetTemperaturesComplateAction {
   type: ActionType.SET_TEMPERATURES_COMPLATE;
-  // payload: {
-  //   [iterationId: number]: number[];
-  // };
   payload: number[][];
 }
 
