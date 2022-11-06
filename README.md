@@ -1,7 +1,10 @@
 # Finite Element Method simulation
 
 ## Description
-A web applications that allows solve FEM equation.
+A web application that solves FEM equation.
+
+## link to website
+https://fem-simulation-3dcd6.web.app/
 
 ## Tech stack
 - **TypeScript**
